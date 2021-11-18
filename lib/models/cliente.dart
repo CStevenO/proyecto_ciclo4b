@@ -1,9 +1,9 @@
 class Cliente{
-  int id;
-  String nombre;
-  String direccion;
-  String telefono;
-  String celular;
+  int id = 0;
+  String nombre = "";
+  String direccion = "";
+  String telefono = "";
+  String celular = "";
   //TODO: Agregar password and User
 
   Cliente(
