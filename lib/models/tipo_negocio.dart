@@ -3,20 +3,25 @@ class TipoNegocio{
   String tipo;
   String foto;
 
-  TipoNegocio(
-      this.id,
-      this.tipo,
-      this.foto
-      );
+  TipoNegocio({
+    required this.id,
+    required this.tipo,
+    required this.foto
+  });
 
-  TipoNegocio.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        tipo = json['tipo'],
-        foto = json['foto'];
+  TipoNegocio.fromJson(Map<String, Object?> json)
+      : this(
+      id: json['id']! as int,
+      tipo: json['tipo']! as String,
+      foto: json['foto']! as String
+  );
 
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'tipo': tipo,
-    'foto': foto,
-  };
+
+  Map<String, Object?> toJson() {
+    return {
+      'id': id,
+      'tipo': tipo,
+      'foto': foto
+    };
+  }
 }

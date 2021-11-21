@@ -1,4 +1,3 @@
-import 'prueba_consulta.dart';
 import 'package:proyecto_ciclo4b/models/negocio.dart';
 
 class Tienda {
@@ -14,5 +13,5 @@ class Tienda {
   );
   //TODO: Agregar una List<Tienda> aqui
 
-  static List<Tienda> samples = PruebaConsulta().consultar() as List<Tienda>;
+  //static List<Tienda> samples = PruebaConsulta().consultar() as List<Tienda>;
 }

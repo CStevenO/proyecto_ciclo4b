@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.proyecto_ciclo4b">
    <application
+        android:name="androidx.multidex.MultiDexApplication" >
         android:label="proyecto_ciclo4b"
         android:icon="@mipmap/ic_launcher">
         <activity

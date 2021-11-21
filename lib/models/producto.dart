@@ -3,24 +3,28 @@ class Producto{
   String codigo;
   String nombre;
   String foto;
-  Producto(
-      this.id,
-      this.codigo,
-      this.nombre,
-      this.foto,
-  );
+  Producto({
+    required this.id,
+    required this.codigo,
+    required this.nombre,
+    required this.foto,
+  });
 
-  Producto.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        codigo = json['codigo'],
-        nombre = json['nombre'],
-        foto = json['foto'];
+  Producto.fromJson(Map<String, Object?> json)
+      : this(
+        id: json['id']! as int,
+        codigo: json['codigo']! as String,
+        nombre: json['nombre']! as String,
+        foto: json['foto']! as String
+      );
 
 
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'codigo': codigo,
-    'nombre': nombre,
-    'foto': foto,
-  };
+  Map<String, Object?> toJson() {
+    return {
+      'id': id,
+      'codigo': codigo,
+      'nombre': nombre,
+      'foto': foto
+    };
+  }
 }

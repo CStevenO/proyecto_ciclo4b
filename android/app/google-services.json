@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "482960288705",
+    "project_id": "tienda-4e84d",
+    "storage_bucket": "tienda-4e84d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482960288705:android:6235ecbd35a9abf54ddd40",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_ciclo4b"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482960288705-vecjim7pfs1su968076mog90mc6dagou.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0lNvNXd_pjXoPtB8nshqREtWZE_AL1RE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482960288705-vecjim7pfs1su968076mog90mc6dagou.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

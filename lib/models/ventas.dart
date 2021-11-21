@@ -1,24 +1,26 @@
-import 'cliente.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class Venta{
   int id;
-  Cliente cliente;
+  DocumentReference cliente;
   double total;
 
-  Venta(
-      this.id,
-      this.cliente,
-      this.total
-      );
+  Venta({required this.id, required this.cliente, required this.total});
 
-  Venta.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        cliente = Cliente.fromJson(json['cliente']),
-        total = json['total'];
+  Venta.fromJson(Map<String, Object?> json)
+      : this(
+      id: json['id']! as int,
+      cliente: json['cliente']! as DocumentReference,
+      total: json['total']! as double
+  );
 
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'cliente': cliente.toJson(),
-    'total': total,
-  };
+
+  Map<String, Object?> toJson() {
+    return {
+      'id': id,
+      'cliente': cliente,
+      'total': total,
+    };
+  }
 }

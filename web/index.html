@@ -30,9 +30,26 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
+<!-- Add from here -->
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-firestore.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB7XTeD4FC3lUcXLmWZO5G7PwLl1L7N1Ho",
+            authDomain: "tienda-4e84d.firebaseapp.com",
+            projectId: "tienda-4e84d",
+            storageBucket: "tienda-4e84d.appspot.com",
+            messagingSenderId: "482960288705",
+            appId: "1:482960288705:web:aa32f24fbcc717ad4ddd40",
+            measurementId: "G-XMR8V4FHKV"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+      </script>
+    <!-- to here. -->
+
   <script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;

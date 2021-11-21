@@ -1,29 +1,52 @@
-import 'package:proyecto_ciclo4b/models/producto_negocio.dart';
-import 'package:proyecto_ciclo4b/models/ventas.dart';
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DetalleVentas{
-  int id;
-  Venta venta;
-  ProductoNegocio producto;
+  DocumentReference id;
+  List<Items> items;
+
+  DetalleVentas({
+    required this.id,
+    required this.items
+  });
+
+  DetalleVentas.fromJson(Map<String, Object?> json)
+      : this(
+      id: json['id']! as DocumentReference,
+      items: (json['items']! as List<dynamic>).map((i)=>Items.fromJson(i)).toList()
+  );
+
+
+  Map<String, Object?> toJson() {
+    return {
+      'id': id,
+      'items': jsonEncode(items)
+    };
+  }
+
+}
+
+class Items{
   int cantidad;
+  DocumentReference producto;
 
-  DetalleVentas(
-      this.id,
-      this.venta,
-      this.producto,
-      this.cantidad
-      );
+  Items({
+    required this.cantidad,
+    required this.producto,
+  });
 
-  DetalleVentas.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        venta = Venta.fromJson(json['venta']),
-        producto = ProductoNegocio.fromJson(json['producto']),
-        cantidad = json['cantidad'];
+  Items.fromJson(Map<String, Object?> json)
+      : this(
+      cantidad: json['cantidad']! as int,
+      producto: json['producto_negocio']! as DocumentReference
+  );
 
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'venta': venta.toJson(),
-    'producto': producto.toJson(),
-    'cantidad': cantidad,
-  };
+
+  Map<String, Object?> toJson() {
+    return {
+      'cantidad': cantidad,
+      'producto_negocio': producto
+    };
+  }
 }

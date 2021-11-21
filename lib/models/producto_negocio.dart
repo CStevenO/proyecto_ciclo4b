@@ -1,29 +1,35 @@
-import 'package:proyecto_ciclo4b/models/producto.dart';
-import 'package:proyecto_ciclo4b/models/negocio.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductoNegocio{
   int id;
-  Producto producto;
-  Negocio negocio;
+  DocumentReference producto;
+  DocumentReference negocio;
   double precio;
 
-  ProductoNegocio(
-      this.id,
-      this.producto,
-      this.negocio,
-      this.precio
-      );
+  ProductoNegocio({
+    required this.id,
+    required this.producto,
+    required this.negocio,
+    required this.precio
+  });
 
-  ProductoNegocio.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        producto = Producto.fromJson(json['producto']),
-        negocio = Negocio.fromJson(json['negocio']),
-        precio = json['precio'];
 
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'producto': producto.toJson(),
-    'negocio': negocio.toJson(),
-    'precio': precio,
-  };
+  ProductoNegocio.fromJson(Map<String, Object?> json)
+      : this(
+      id: json['id']! as int,
+      producto: json['negocio']! as DocumentReference,
+      negocio: json['producto']! as DocumentReference,
+      precio: json['precio']! as double
+  );
+
+
+  Map<String, Object?> toJson() {
+    return {
+      'id': id,
+      'producto': producto,
+      'negocio': negocio,
+      'precio': precio
+    };
+  }
+
 }
