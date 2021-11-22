@@ -6,7 +6,7 @@ class Venta{
   DocumentReference cliente;
   double total;
 
-  Venta({required this.id, required this.cliente, required this.total});
+  Venta({this.id = 0, required this.cliente, required this.total});
 
   Venta.fromJson(Map<String, Object?> json)
       : this(

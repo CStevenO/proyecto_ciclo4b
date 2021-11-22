@@ -7,7 +7,7 @@ class ProductoNegocio{
   double precio;
 
   ProductoNegocio({
-    required this.id,
+    this.id = 0,
     required this.producto,
     required this.negocio,
     required this.precio

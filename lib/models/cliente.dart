@@ -6,7 +6,6 @@ class Cliente{
   String celular = "";
   String user = "";
   String password = "";
-  //TODO: Agregar password and User
 
   Cliente({
     this.id = 0,

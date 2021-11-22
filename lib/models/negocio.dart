@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Negocio{
@@ -13,7 +15,7 @@ class Negocio{
   DocumentReference tipo;
 
   Negocio({
-      required this.id,
+      this.id = 0,
       required this.nombre,
       required this.direccion,
       required this.geolocalizacion,

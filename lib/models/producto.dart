@@ -4,7 +4,7 @@ class Producto{
   String nombre;
   String foto;
   Producto({
-    required this.id,
+    this.id = 0,
     required this.codigo,
     required this.nombre,
     required this.foto,

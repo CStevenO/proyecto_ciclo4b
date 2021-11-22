@@ -4,7 +4,7 @@ class TipoNegocio{
   String foto;
 
   TipoNegocio({
-    required this.id,
+    this.id = 0,
     required this.tipo,
     required this.foto
   });
