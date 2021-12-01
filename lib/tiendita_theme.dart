@@ -6,27 +6,27 @@ class TienditaTheme {
     bodyText1: GoogleFonts.openSans(
       fontSize: 14.0,
       fontWeight: FontWeight.w700,
-      color: Colors.black,
+      color: Colors.purple,
     ),
     headline1: GoogleFonts.openSans(
       fontSize: 32.0,
       fontWeight: FontWeight.bold,
-      color: Colors.black,
+      color: Colors.deepPurple,
     ),
     headline2: GoogleFonts.openSans(
       fontSize: 21.0,
       fontWeight: FontWeight.w700,
-      color: Colors.black,
+      color: Colors.deepPurple,
     ),
     headline3: GoogleFonts.openSans(
       fontSize: 16.0,
       fontWeight: FontWeight.w600,
-      color: Colors.black,
+      color: Colors.deepPurple,
     ),
     headline6: GoogleFonts.openSans(
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
-      color: Colors.black,
+      color: Colors.deepPurple,
     ),
   );
 
@@ -39,22 +39,22 @@ class TienditaTheme {
     headline1: GoogleFonts.openSans(
       fontSize: 32.0,
       fontWeight: FontWeight.bold,
-      color: Colors.white,
+      color: Colors.deepPurple,
     ),
     headline2: GoogleFonts.openSans(
       fontSize: 21.0,
       fontWeight: FontWeight.w700,
-      color: Colors.white,
+      color: Colors.deepPurple,
     ),
     headline3: GoogleFonts.openSans(
       fontSize: 16.0,
       fontWeight: FontWeight.w600,
-      color: Colors.white,
+      color: Colors.deepPurple,
     ),
     headline6: GoogleFonts.openSans(
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
-      color: Colors.white,
+      color: Colors.deepPurple,
     ),
   );
 
@@ -68,34 +68,47 @@ class TienditaTheme {
       ),
       appBarTheme: const AppBarTheme(
         foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.deepPurple,
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         foregroundColor: Colors.white,
         backgroundColor: Colors.black,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Colors.green,
+        selectedItemColor: Colors.white60,
       ),
       textTheme: lightTextTheme,
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+          circularTrackColor: Colors.purple,
+          linearTrackColor: Colors.purple,
+      ),
     );
   }
 
   static ThemeData dark() {
     return ThemeData(
       brightness: Brightness.dark,
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.black54,
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.purple,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Colors.green,
+        selectedItemColor: Colors.deepPurple,
+        unselectedItemColor: Colors.purple,
+        elevation: 10,
       ),
+      bottomAppBarColor: Colors.deepPurple,
       textTheme: darkTextTheme,
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        circularTrackColor: Colors.deepPurple,
+        linearTrackColor: Colors.deepPurple,
+        color: Colors.purple
+      ),
+      backgroundColor: Colors.black26,
     );
   }
 }

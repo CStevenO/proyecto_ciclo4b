@@ -16,17 +16,18 @@ class ViewTipo extends StatelessWidget{
   Widget build(BuildContext context) {
     return OpenContainer(
       openBuilder: (_, closeContainer) => TiendasScreen(tipo: tipo),
-      closedBuilder: (_, openContainer) => Item(tipo: tipo),
+      closedBuilder: (_, openContainer) => ItemTipo(tipo: tipo),
       openColor: Colors.transparent,
       closedColor: Colors.transparent,
+      transitionDuration: const Duration(milliseconds: 300),
     );
   }
 }
 
-class Item extends StatelessWidget{
+class ItemTipo extends StatelessWidget{
   final TipoNegocio tipo;
 
-  const Item({
+  const ItemTipo({
     Key? key,
     required this.tipo
   }): super(key: key);

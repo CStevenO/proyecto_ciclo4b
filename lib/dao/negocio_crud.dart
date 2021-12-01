@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:proyecto_ciclo4b/Exceptions/errores.dart';
 import 'package:proyecto_ciclo4b/dao/myhttpwrapper.dart';
+import 'package:proyecto_ciclo4b/dao/tipo_negocio_crud.dart';
 import 'package:proyecto_ciclo4b/models/negocio.dart';
 
 class CrudNegocio extends MyHttpWrapper<Negocio>{
@@ -76,9 +77,9 @@ class CrudNegocio extends MyHttpWrapper<Negocio>{
     return negocio;
   }
 
-  Future<List<Negocio>> buscarPorTipo(DocumentReference refTipo) async {
+  Future<List<Negocio>> buscarPorTipo(int refTipo) async {
     List<QueryDocumentSnapshot<Negocio>> negocios = await objectRef
-        .where("tipo", isEqualTo: refTipo)
+        .where("tipo", isEqualTo: await CrudTipoNegocio().consultarRef(refTipo))
         .get()
         .then((snapshot) => snapshot.docs);
     List<Negocio> negocio = negocios.map((i) => i.data()).toList();
