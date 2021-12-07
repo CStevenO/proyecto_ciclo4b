@@ -26,7 +26,7 @@ class TienditaTheme {
     headline6: GoogleFonts.openSans(
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
-      color: Colors.deepPurple,
+      color: Colors.white,
     ),
   );
 

@@ -98,6 +98,7 @@ class ItemNegocio extends StatelessWidget{
                 Center(
                   child:Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(Icons.watch_later_outlined,color: Colors.deepPurple),
                       const SizedBox(width: 3),

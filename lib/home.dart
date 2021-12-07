@@ -1,5 +1,11 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proyecto_ciclo4b/components/search_app_bar.dart';
+import 'package:proyecto_ciclo4b/dao/cliente_crud.dart';
+import 'package:proyecto_ciclo4b/models/cliente.dart';
+import 'package:proyecto_ciclo4b/screens/explore_perfil.dart';
 import 'package:proyecto_ciclo4b/screens/explore_tipos.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,8 +25,12 @@ class _HomeState extends State<Home> {
     Container(color: Colors.green),
     //TODO: agregar ExploreCarrito
     Container(color: Colors.blue),
-    //TODO: agregar ExplorePerfil
-    Container(color: Colors.red),
+    FutureBuilder(
+      future: CrudCliente().consultar(2),
+      builder: (context, AsyncSnapshot<Cliente> snapshot) {
+        return ExplorePerfil(cliente: snapshot.data?? Cliente.init());
+      },
+    ),
   ];
   void _onItemTapped(int index){
     setState(() {
@@ -30,16 +40,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Tiendita',
-          style: GoogleFonts.openSans(
-            fontSize: 20.0,
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
-          ),
-        ),
-      ),
+      appBar: SearchAppBar(),
       body: pages[_selectedIndex],
       //TODO: Agregarle animación para cuando se cambie de página
       bottomNavigationBar: BottomNavigationBar(

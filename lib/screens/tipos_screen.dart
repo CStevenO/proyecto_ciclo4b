@@ -22,15 +22,15 @@ class TipoScreen extends StatelessWidget{
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           itemBuilder: (context, index){
             return AnimationConfiguration.staggeredGrid(
-                position: index, 
-                duration: const Duration(seconds: 1),
-                columnCount: 1,
-                child: SlideAnimation(
-                  verticalOffset: 44.0,
-                  child: FadeInAnimation(
-                    child: ViewTipo(tipo: tipos[index]),
-                  ),
+              position: index,
+              duration: const Duration(seconds: 1),
+              columnCount: 1,
+              child: SlideAnimation(
+                verticalOffset: 44.0,
+                child: FadeInAnimation(
+                  child: ViewTipo(tipo: tipos[index]),
                 ),
+              ),
             );
           },
         ),

@@ -45,6 +45,10 @@ class CrudCliente extends MyHttpWrapper<Cliente>{
       return await objectRef.add(objeto);
   }
 
+  Future<void> editarCliente(Cliente objeto) async{
+    (await consultarRef(objeto.id)).update(objeto.toJson());
+  }
+
   @override
   Future<void> eliminar(DocumentReference ref) {
     CollectionReference clientes = FirebaseFirestore.instance.collection('clientes');

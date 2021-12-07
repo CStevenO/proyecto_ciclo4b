@@ -17,7 +17,7 @@ class BatchCrud{
   );
 
   BatchCrud();
-
+  //TODO: revisar este metodo ya que para actualizar un negocio toca hacerlo en una lista de productos que ofrezca ese negocio
   Future<void> actualizarNegocio(DocumentReference proRef,DocumentReference negRef,Negocio negocio)async{
     QueryDocumentSnapshot<NegociosProductos> document;
     try {
@@ -66,9 +66,12 @@ class BatchCrud{
         negocios: [negocio]
     ));
     ProductoNegocio proneg = ProductoNegocio(
-        producto: refpro,
-        negocio: await CrudNegocio().consultarRef(negocio.id),
-        precio: precio);
+        producto: producto,
+        negocio: negocio.nombre,
+        refNegocio: await CrudNegocio().consultarRef(negocio.id),
+        precio: precio,
+        refProducto: refpro
+    );
     CrudProductoNegocio().crear(proneg);
   }
 
@@ -91,5 +94,9 @@ class BatchCrud{
     }
     batch.update(document.reference, n.toJson());
     batch.commit();
+  }
+
+  Future<void> agregarProducto(Negocio negocio,Producto producto, double precio) async{
+
   }
 }

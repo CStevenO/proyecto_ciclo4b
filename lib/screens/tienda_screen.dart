@@ -1,22 +1,33 @@
+import 'package:expandable/expandable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proyecto_ciclo4b/components/productos_list_view.dart';
+import 'package:proyecto_ciclo4b/dao/producto_negocio_crud.dart';
 import 'package:proyecto_ciclo4b/models/negocio.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:proyecto_ciclo4b/models/producto_negocio.dart';
 
-class TiendaScreen extends StatelessWidget{
+class TiendaScreen extends StatefulWidget{
   Negocio negocio;
 
   TiendaScreen({
     Key? key,
     required this.negocio,
   }): super(key: key);
-  //TODO: Terminar todo esto pero que se vea bonito
+
+  @override
+  State<TiendaScreen> createState() => _TiendaScreenState();
+}
+
+class _TiendaScreenState extends State<TiendaScreen>{
+  bool isOpened = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          negocio.nombre,
+          widget.negocio.nombre,
           style: GoogleFonts.openSans(
             fontSize: 20.0,
             fontWeight: FontWeight.w600,
@@ -32,7 +43,7 @@ class TiendaScreen extends StatelessWidget{
               height: 100,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(negocio.foto),
+                  image: AssetImage(widget.negocio.foto),
                   fit: BoxFit.cover
                 ),
                 borderRadius: const BorderRadius.only(
@@ -77,14 +88,14 @@ class TiendaScreen extends StatelessWidget{
                               radius: 34,
                               backgroundColor: Colors.deepPurple.shade700,
                               child: CircleAvatar(
-                                  radius: 33,
-                                  backgroundImage: AssetImage(negocio.logo)
+                                radius: 33,
+                                backgroundImage: AssetImage(widget.negocio.logo)
                               ),
                             ),
                           ),
                           const SizedBox(width: 15),
                           Text(
-                            negocio.nombre,
+                            widget.negocio.nombre,
                             style: GoogleFonts.openSans(
                               fontSize: 20.0,
                               fontWeight: FontWeight.w600,
@@ -98,30 +109,76 @@ class TiendaScreen extends StatelessWidget{
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10),
+            ExpandableNotifier(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Direccion: ' + negocio.direccion,
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
-                  Text(
-                    'Telefono: ' + negocio.telefono,
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
-                  Text(
-                    'Celular: ' + negocio.celular,
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
-                  Text(
-                    'latitud: ' + negocio.geolocalizacion.latitude.toString() + ' longitud: ' + negocio.geolocalizacion.longitude.toString(),
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
-                  Text(
-                    'Pagina Web: ' + negocio.pagina_web,
-                    style: Theme.of(context).textTheme.bodyText2,
+                  Expandable(
+                    theme: const ExpandableThemeData(
+                      hasIcon: true,
+                      iconRotationAngle: 30,
+                      tapBodyToCollapse: true,
+                      useInkWell: true,
+                      headerAlignment: ExpandablePanelHeaderAlignment.center,
+                      scrollAnimationDuration: Duration(milliseconds: 1000),
+                    ),
+                    collapsed: ExpandableButton(
+                      child: Card(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Detalles',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                            const SizedBox(width: 30),
+                            const Icon(Icons.arrow_drop_down_sharp)
+                          ],
+                        ),
+                      ),
+                    ),
+                    expanded: SizedBox(
+                      width: double.infinity,
+                      child: Card(
+                        elevation: 2,
+                        child: Column(
+                          children: [
+                            Text(
+                              'Direccion: ' + widget.negocio.direccion,
+                              style: Theme.of(context).textTheme.bodyText2,
+                            ),
+                            Text(
+                              'Telefono: ' + widget.negocio.telefono,
+                              style: Theme.of(context).textTheme.bodyText2,
+                            ),
+                            Text(
+                              'Celular: ' + widget.negocio.celular,
+                              style: Theme.of(context).textTheme.bodyText2,
+                            ),
+                            Text(
+                              'latitud: ' + widget.negocio.geolocalizacion.latitude.toString() + ' longitud: ' + widget.negocio.geolocalizacion.longitude.toString(),
+                              style: Theme.of(context).textTheme.bodyText2,
+                            ),
+                            Text(
+                              'Pagina Web: ' + widget.negocio.pagina_web,
+                              style: Theme.of(context).textTheme.bodyText2,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.deepPurple.shade200,
+                                borderRadius: const BorderRadius.only(
+                                  bottomRight: Radius.circular(5),
+                                  bottomLeft: Radius.circular(5),
+                                ),
+                              ),
+                              width: double.infinity,
+                              child: ExpandableButton(
+                                child: const Icon(Icons.arrow_drop_up_sharp)
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -130,6 +187,16 @@ class TiendaScreen extends StatelessWidget{
               indent: 10,
               endIndent: 10,
             ),
+            FutureBuilder(
+              future: CrudProductoNegocio().listarPorNegocio(widget.negocio),
+              builder: (context,AsyncSnapshot<List<ProductoNegocio>> snapshot){
+                if(snapshot.connectionState == ConnectionState.done){
+                  return ProductosListView(productos: snapshot.data?? []);
+                }else{
+                  return const CircularProgressIndicator();
+                }
+              }
+            )
           ],
         ),
       ),

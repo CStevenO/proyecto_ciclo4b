@@ -13,23 +13,24 @@ class SplashPage extends StatelessWidget {
     });
     return Scaffold(
       body: Container(
-          color: const Color(0xFF38b6ff),
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              //IconFont(
-              // color: Colors.blue,
-              //size: 100,
-              //iconName: IconFontHelper.MAIN_LOGO),
-              Image.asset(
-                "mitienditalogo1.png",
-                height: 300.0,
-                width: 300.0,
-                //linea nueva para centrar , probar
-                alignment: Alignment.center,
-              ),
-            ],
-          )),
+        color: const Color(0xFF38b6ff),
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+            //IconFont(
+            // color: Colors.blue,
+            //size: 100,
+            //iconName: IconFontHelper.MAIN_LOGO),
+            Image.asset(
+              "mitienditalogo1.png",
+              height: 300.0,
+              width: 300.0,
+              //linea nueva para centrar , probar
+              alignment: Alignment.center,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

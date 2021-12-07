@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:proyecto_ciclo4b/Exceptions/errores.dart';
 import 'package:proyecto_ciclo4b/dao/myhttpwrapper.dart';
+import 'package:proyecto_ciclo4b/dao/negocio_crud.dart';
+import 'package:proyecto_ciclo4b/dao/producto_crud.dart';
+import 'package:proyecto_ciclo4b/models/negocio.dart';
+import 'package:proyecto_ciclo4b/models/producto.dart';
 import 'package:proyecto_ciclo4b/models/producto_negocio.dart';
 
 
@@ -74,6 +78,24 @@ class CrudProductoNegocio extends MyHttpWrapper<ProductoNegocio>{
         .get()
         .then((snapshot) => snapshot.docs);
     List<ProductoNegocio> producto = productos.map((i)=>i.data()).toList();
+    return producto;
+  }
+
+  Future<List<ProductoNegocio>> listarPorNegocio(Negocio negocio) async{
+    List<QueryDocumentSnapshot<ProductoNegocio>> productos = await objectRef
+        .where('refNegocio', isEqualTo: await CrudNegocio().consultarRef(negocio.id))
+        .get()
+        .then((snapshot) => snapshot.docs);
+    List<ProductoNegocio> producto = productos.map((i) => i.data()).toList();
+    return producto;
+  }
+
+  Future<List<ProductoNegocio>> listarPorProducto(String nombre) async{
+    List<QueryDocumentSnapshot<ProductoNegocio>> productos = await objectRef
+        .where('refProducto', isEqualTo: await CrudProducto().consultarPorNombre(nombre))
+        .get()
+        .then((snapshot) => snapshot.docs);
+    List<ProductoNegocio> producto = productos.map((i) => i.data()).toList();
     return producto;
   }
 }
